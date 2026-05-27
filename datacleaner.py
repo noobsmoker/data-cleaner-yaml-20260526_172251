@@ -35,7 +35,6 @@ def clean_csv(input_file, output_file=None, remove_empty=True, trim_whitespace=T
 
 def main():
     try:
-    try:
     parser = argparse.ArgumentParser(description='Data Cleaner')
     parser.add_argument('input')
     parser.add_argument('-o', '--output')
@@ -43,5 +42,9 @@ def main():
     args = parser.parse_args()
     count = clean_csv(args.input, args.output, remove_empty=not args.keep_empty)
     print(f"Cleaned {count} rows", file=sys.stderr)
+    except Exception as e:
+    print(f"Error: {e}", file=sys.stderr)
+    sys.exit(1)
+
 if __name__ == '__main__':
     main()
